@@ -24,9 +24,17 @@ Complete Get Started and obtain the Resources values and API keys listed in the 
 
     ```bash
     export LAB_NAMESPACE="<your-assigned-namespace>"
+    ```
+    ```bash
     export OKE_CLUSTER_ID="<shared-oke-cluster-ocid>"
+    ```
+    ```bash
     export OCI_REGION="<assigned-oke-region>"
+    ```
+    ```bash
     export RAG_APP_URL="<RAG-application-URL-from-Resources>"
+    ```
+    ```bash
     export AIQ_APP_URL="<AI-Q-application-URL-from-Resources>"
     ```
 
@@ -38,7 +46,11 @@ Complete Get Started and obtain the Resources values and API keys listed in the 
 
     ```bash
     mkdir -p "$HOME/.kube"
+    ```
+    ```bash
     export KUBECONFIG="$HOME/.kube/${LAB_NAMESPACE}.yaml"
+    ```
+    ```bash
     oci ce cluster create-kubeconfig \
       --cluster-id "$OKE_CLUSTER_ID" \
       --file "$KUBECONFIG" \
@@ -46,8 +58,11 @@ Complete Get Started and obtain the Resources values and API keys listed in the 
       --token-version 2.0.0 \
       --kube-endpoint PUBLIC_ENDPOINT \
       --with-auth-context
-
+    ```
+    ```bash
     kubectl config set-context --current --namespace="$LAB_NAMESPACE"
+    ```
+    ```bash
     kubectl get pods
     ```
 
@@ -56,9 +71,17 @@ Complete Get Started and obtain the Resources values and API keys listed in the 
 
     ```bash
     kubectl auth can-i create nimservices.apps.nvidia.com
+    ```
+    ```bash
     kubectl auth can-i create nimcaches.apps.nvidia.com
+    ```
+    ```bash
     kubectl auth can-i create elasticsearches.elasticsearch.k8s.elastic.co
+    ```
+    ```bash
     kubectl auth can-i create networkpolicies.networking.k8s.io
+    ```
+    ```bash
     kubectl get resourcequota
     ```
 
@@ -68,10 +91,18 @@ Complete Get Started and obtain the Resources values and API keys listed in the 
 
     ```bash
     read -rsp "NGC API key: " NGC_API_KEY; printf '\n'
+    ```
+    ```bash
     read -rsp "NVIDIA API key (press Enter to reuse NGC key): " NVIDIA_API_KEY; printf '\n'
+    ```
+    ```bash
     NVIDIA_API_KEY="${NVIDIA_API_KEY:-$NGC_API_KEY}"
     read -rsp "Tavily API key: " TAVILY_API_KEY; printf '\n'
+    ```
+    ```bash
     AIQ_DB_PASSWORD="$(openssl rand -base64 32)"
+    ```
+    ```bash
     export NGC_API_KEY NVIDIA_API_KEY TAVILY_API_KEY AIQ_DB_PASSWORD
     ```
 

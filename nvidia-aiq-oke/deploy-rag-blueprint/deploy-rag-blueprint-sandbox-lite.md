@@ -77,13 +77,21 @@ Complete Lab 1 in this variant. Keep its Cloud Shell session and exported variab
     ```bash
     kubectl patch deployment rag-seaweedfs-all-in-one --type=json \
       -p='[{"op":"replace","path":"/spec/template/spec/containers/0/image","value":"docker.io/chrislusf/seaweedfs:3.73"}]'
-
+    ```
+    ```bash
     kubectl patch deployment rag-server --type=merge \
       -p='{"spec":{"strategy":{"type":"RollingUpdate","rollingUpdate":{"maxSurge":0,"maxUnavailable":1}}}}'
+    ```
+    ```bash
     kubectl rollout status deployment/rag-server --timeout=20m
-
+    ```
+    ```bash
     kubectl wait --for=jsonpath='{.status.state}'=Ready nimservice --all --timeout=90m
+    ```
+    ```bash
     kubectl wait --for=jsonpath='{.status.health}'=green elasticsearch --all --timeout=30m
+    ```
+    ```bash
     kubectl rollout status deployment/rag-frontend --timeout=20m
     ```
 
@@ -94,8 +102,14 @@ Complete Lab 1 in this variant. Keep its Cloud Shell session and exported variab
 
     ```bash
     kubectl get nimservice
+    ```
+    ```bash
     kubectl get elasticsearch
+    ```
+    ```bash
     kubectl get service rag-frontend
+    ```
+    ```bash
     printf '%s\n' "$RAG_APP_URL"
     ```
 

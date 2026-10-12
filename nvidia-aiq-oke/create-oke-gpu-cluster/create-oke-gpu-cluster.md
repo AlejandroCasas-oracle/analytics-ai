@@ -38,7 +38,9 @@ Estimated Time: 25 minutes
 
     ```bash
     export CLUSTER_NAME="${RESOURCE_PREFIX}-oke"
+    ```
 
+    ```bash
     export CLUSTER_WORK_REQUEST_OCID=$(oci ce cluster create \
       --compartment-id "$COMPARTMENT_OCID" \
       --name "$CLUSTER_NAME" \
@@ -53,7 +55,8 @@ Estimated Time: 25 minutes
       --region "$REGION" \
       --query '"opc-work-request-id"' \
       --raw-output)
-
+    
+    ```bash
     echo "$CLUSTER_WORK_REQUEST_OCID"
     ```
 
@@ -78,7 +81,8 @@ Estimated Time: 25 minutes
       --region "$REGION" \
       --query 'data[0].id' \
       --raw-output)
-
+    ```
+    ```bash
     echo "$CLUSTER_OCID"
     ```
 
@@ -88,7 +92,8 @@ Estimated Time: 25 minutes
 
     ```bash
     mkdir -p "$HOME/.kube"
-
+    ```
+    ```bash
     oci ce cluster create-kubeconfig \
       --cluster-id "$CLUSTER_OCID" \
       --file "$HOME/.kube/config" \
@@ -149,6 +154,8 @@ Estimated Time: 25 minutes
 
     ```bash
     export NODE_IMAGE_OCID="<node_image_ocid>"
+    ```
+    ```bash
     echo "$NODE_IMAGE_OCID"
     ```
 
@@ -166,7 +173,8 @@ Estimated Time: 25 minutes
       "bootVolumeSizeInGBs": $BOOT_VOLUME_GB
     }
     EOF
-
+    ```
+    ```bash
     cat > /tmp/aiq-node-config.json <<EOF
     {
       "size": 1,
@@ -187,7 +195,8 @@ Estimated Time: 25 minutes
 
     ```bash
     export NODE_POOL_NAME="${RESOURCE_PREFIX}-a100-pool"
-
+    ```
+    ```bash
     export NODE_POOL_WORK_REQUEST_OCID=$(oci ce node-pool create \
       --compartment-id "$COMPARTMENT_OCID" \
       --cluster-id "$CLUSTER_OCID" \
@@ -201,7 +210,8 @@ Estimated Time: 25 minutes
       --region "$REGION" \
       --query '"opc-work-request-id"' \
       --raw-output)
-
+    ```
+    ```bash
     echo "$NODE_POOL_WORK_REQUEST_OCID"
     ```
 
@@ -227,7 +237,8 @@ Estimated Time: 25 minutes
       --region "$REGION" \
       --query 'data[0].id' \
       --raw-output)
-
+    ```
+    ```bash
     echo "$NODE_POOL_OCID"
     ```
 
@@ -243,6 +254,8 @@ Estimated Time: 25 minutes
 
     ```bash
     export NODE_NAME=$(kubectl get nodes -o jsonpath='{.items[0].metadata.name}')
+    ```
+    ```bash
     echo "$NODE_NAME"
     ```
 
@@ -250,6 +263,8 @@ Estimated Time: 25 minutes
 
     ```bash
     kubectl describe node "$NODE_NAME" | grep -A8 "Capacity:" | grep nvidia || true
+    ```
+    ```bash
     kubectl describe node "$NODE_NAME" | grep -A8 "Allocatable:" | grep nvidia || true
     ```
 

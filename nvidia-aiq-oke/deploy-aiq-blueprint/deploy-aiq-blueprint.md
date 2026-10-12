@@ -27,6 +27,8 @@ The variables used in this lab were set in the Prepare Environment lab. Keep the
 
     ```bash
     mkdir -p "$HOME/aiq-offline"
+    ```
+    ```bash
     cd "$HOME/aiq-offline"
     ```
 
@@ -34,8 +36,11 @@ The variables used in this lab were set in the Prepare Environment lab. Keep the
 
     ```bash
     curl -L -o rag-ocir-cloudshell-bundle.tgz "$RAG_BUNDLE_URL"
+    ```
+    ```bash
     curl -L -o aira-ocir-cloudshell-bundle.tgz "$AIRA_BUNDLE_URL"
-
+    ```
+    ```bash
     ls -lh *.tgz
     ```
 
@@ -59,7 +64,10 @@ The variables used in this lab were set in the Prepare Environment lab. Keep the
 1. Create the RAG namespace.
 
     ```bash
-    kubectl create namespace "$RAG_NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
+    kubectl create namespace "$RAG_NAMESPACE" --dry-run=client -o yaml | 
+    ```
+    ```bash
+    kubectl apply -f -
     ```
 
 2. Apply the rendered RAG manifest.
