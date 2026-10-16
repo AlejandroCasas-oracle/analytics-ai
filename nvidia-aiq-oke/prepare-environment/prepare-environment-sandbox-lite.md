@@ -140,8 +140,32 @@ For additional details, see Oracle's [Using Cloud Shell](https://docs.oracle.com
     read -rsp "Tavily API key: " TAVILY_API_KEY; printf '\n'
     ```
     ```bash
-    AIQ_DB_PASSWORD="$(openssl rand -base64 32)"
+    AIQ_DB_PASSWORD="$(openssl rand -hex 32)"
     ```
+
+    Check that the generated password contains exactly 64 lowercase
+    hexadecimal characters without printing the password:
+
+    ```bash
+    if [[ "$AIQ_DB_PASSWORD" =~ ^[0-9a-f]{64}$ ]]; then
+        echo "Password format OK"
+    else
+        echo "Password generation failed"
+    fi
+    ```
+
+    Expected output:
+
+    ```text
+    Password format OK
+    ```
+
+    > **Note:** If the check prints `Password generation failed`, run the
+    > password-generation command again, then repeat the check. Continue only
+    > when it prints `Password format OK`.
+
+    After the check succeeds, export the variables before creating the Secret.
+
     ```bash
     export NGC_API_KEY NVIDIA_API_KEY TAVILY_API_KEY AIQ_DB_PASSWORD
     ```

@@ -175,6 +175,33 @@ For additional details, see Oracle's [Using Cloud Shell](https://docs.oracle.com
     test -n "$TAVILY_API_KEY" && echo "TAVILY_API_KEY is set"
     ```
 
+    Generate the AI-Q database password:
+
+    ```bash
+    AIQ_DB_PASSWORD="$(openssl rand -hex 32)"
+    ```
+
+    Check that the generated password contains exactly 64 lowercase
+    hexadecimal characters without printing the password:
+
+    ```bash
+    if [[ "$AIQ_DB_PASSWORD" =~ ^[0-9a-f]{64}$ ]]; then
+        echo "Password format OK"
+    else
+        echo "Password generation failed"
+    fi
+    ```
+
+    Expected output:
+
+    ```text
+    Password format OK
+    ```
+
+    > **Note:** If the check prints `Password generation failed`, run the
+    > password-generation command again, then repeat the check. Continue only
+    > when it prints `Password format OK`.
+
 ## Task 4: Confirm Basic Cluster Readiness
 
 1. Confirm the node is Ready.
