@@ -131,9 +131,6 @@ For additional details, see Oracle's [Using Cloud Shell](https://docs.oracle.com
     ```bash
     read -rsp "Tavily API key: " TAVILY_API_KEY; printf '\n'
     ```
-    > **Note:** If password generation fails, run the following command again.
-    > Then run the validation check below and confirm it prints
-    > `Password format OK` before continuing.
 
     ```bash
     AIQ_DB_PASSWORD="$(openssl rand -hex 32)"
