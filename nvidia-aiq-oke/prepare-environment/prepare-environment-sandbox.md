@@ -131,6 +131,10 @@ For additional details, see Oracle's [Using Cloud Shell](https://docs.oracle.com
     ```bash
     read -rsp "Tavily API key: " TAVILY_API_KEY; printf '\n'
     ```
+    > **Note:** If password generation fails, run the following command again.
+    > Then run the validation check below and confirm it prints
+    > `Password format OK` before continuing.
+
     ```bash
     AIQ_DB_PASSWORD="$(openssl rand -hex 32)"
     ```
@@ -152,9 +156,8 @@ For additional details, see Oracle's [Using Cloud Shell](https://docs.oracle.com
     Password format OK
     ```
 
-    > **Note:** If the check prints `Password generation failed`, run the
-    > password-generation command again, then repeat the check. Continue only
-    > when it prints `Password format OK`.
+    If the check prints `Password generation failed`, repeat the generation
+    command and validation check above.
 
     After the check succeeds, export the variables before creating the Secret.
 
